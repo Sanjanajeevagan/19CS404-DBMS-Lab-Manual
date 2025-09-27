@@ -22,122 +22,85 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+
+<img width="1327" height="994" alt="Screenshot 2025-09-26 111526" src="https://github.com/user-attachments/assets/5d89050f-51e2-4d0e-ab85-342ecc35d84b" />
+
 
 ### Entities and Attributes
+1.MEMBER-
+member_id(Primary key)
+name
+membershiptype
+startdate
 
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+2.PROGRAM-
+programID(Primary key)
+programname
+description
+schedule
 
-### Relationships and Constraints
+3.TRAINER-
+trainderID(Primary key)
+name
+specialisation
+experience
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+4.PAYMENT-
 
-### Assumptions
-- 
-- 
-- 
+paymentID(Primary  Key)
+amount
+paymentdate
+paymenttype
 
----
+5.SESSION-
+sessionID (Primary key)
+date
+time
+type
 
-# Scenario B: City Library Event & Book Lending System
+6.ATTENDENCE(Attendance)-
+attendance_id (Primary Key)
+status(values: present/absent)
 
-**Business Context:**  
-The Central Library wants to manage book lending and cultural events.
-
-**Requirements:**  
-- Members borrow books, with loan and return dates tracked.  
-- Each book has title, author, and category.  
-- Library organizes events; members can register.  
-- Each event has one or more speakers/authors.  
-- Rooms are booked for events and study.  
-- Overdue fines apply for late returns.
-
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
 
 ### Relationships and Constraints
+MEMBER — pays → PAYMENT One member can make many payments. Each payment
+belongs to one member. (1-to-Many)
 
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+MEMBER — Enrollment → PROGRAM A member can enroll in multiple programs.
+A program can have many members. (Many-to-Many)
 
-### Assumptions
-- 
-- 
-- 
+PROGRAM — teaches → TRAINER A trainer can teach multiple programs. A program
+can be taught by one or more trainers. (Many-to-Many)
 
----
+MEMBER — attends → SESSION A member can attend many sessions. A session can be
+attended by many members. (Many-to-Many)
 
-# Scenario C: Restaurant Table Reservation & Ordering
+SESSION — has → ATTENDENCE A session can have many attendance records. Each
+attendance record belongs to a session. (1-to-Many)
 
-**Business Context:**  
-A popular restaurant wants to manage reservations, orders, and billing.
 
-**Requirements:**  
-- Customers can reserve tables or walk in.  
-- Each reservation includes date, time, and number of guests.  
-- Customers place food orders linked to reservations.  
-- Each order contains multiple dishes; dishes belong to categories (starter, main, dessert).  
-- Bills generated per reservation, including food and service charges.  
-- Waiters assigned to serve reservations.
-
-### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
-
-### Entities and Attributes
-
-| Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
 
 ### Assumptions
-- 
-- 
-- 
+Each member must have a valid membership (with start date and type).
 
----
+A program may be taught by more than one trainer.
 
-## Instructions for Students
+Enrollment is required before a member can attend sessions of a program.
 
-1. Complete **all three scenarios** (A, B, C).  
-2. Identify entities, relationships, and attributes for each.  
-3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
-4. Fill in all tables and assumptions for each scenario.  
-5. Export the completed Markdown (with diagrams) as **a single PDF**
+Payments are linked directly to members, not to programs or sessions.
+
+Attendance is tracked per session per member.
+
+Status in attendance is limited to "present" or "absent".
+
+A trainer may teach multiple programs but must have at least one specialization.
+
+A member can attend multiple sessions but must be enrolled in at least one program.
+
+## RESULT
+
+Hence,the concepts of ER diagram is understood and applied by creating an ER diagram
+for a real world application.
+
+
