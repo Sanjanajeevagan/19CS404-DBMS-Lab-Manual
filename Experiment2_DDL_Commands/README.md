@@ -104,124 +104,223 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+
+Create a new table named orders with the following specifications:
+ord_id as TEXT with a length of 4.
+item_id as TEXT.
+ord_date as DATE.
+ord_qty as INTEGER.
+cost as INTEGER.
+The primary key is a composite key consisting of item_id and ord_date.
+ord_id and item_id should not accept NULL
 
 ```sql
--- Paste your SQL code below for Question 1
+create table orders(
+ord_id TEXT CHECK(LENGTH(ord_id)=4),
+item_id TEXT NOT NULL,
+ord_date DATE NOT NULL,
+ord_qty INTEGER,
+cost INTEGER,
+PRIMARY KEY(item_id,ord_date)
+)
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1247" height="372" alt="Screenshot 2025-09-27 091638" src="https://github.com/user-attachments/assets/4fa6fb34-a615-499f-9117-b2ba2bd301a8" />
+
 
 **Question 2**
----
--- Paste Question 2 here
+
+In the Employee table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+EmployeeID  Name          Position    Department  Salary
+----------  ------------  ----------  ----------  ----------
+5           George Clark  Consultant
+7           Noah Davis    Manager     HR          60000
+8           Ava Miller    Consultant  IT
 
 ```sql
--- Paste your SQL code below for Question 2
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+VALUES('5','George Clark','Consultant',NULL,NULL),
+      ('7','Noah Davis','Manager','HR','60000'),
+      ('8','Ava Miller','Consultant','IT',NULL);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1260" height="314" alt="Screenshot 2025-09-27 091757" src="https://github.com/user-attachments/assets/6a4cc826-eec5-4cd6-883b-6690580320d2" />
+
 
 **Question 3**
----
--- Paste Question 3 here
+
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+
 
 ```sql
--- Paste your SQL code below for Question 3
+create table contacts(
+contact_id INTEGER PRIMARY KEY,
+first_name TEXT NOT NULL,
+last_name TEXT NOT NULL,
+email TEXT,
+phone TEXT NOT NULL CHECK(LENGTH(phone)>=10)
+)
+
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1263" height="370" alt="Screenshot 2025-09-27 092131" src="https://github.com/user-attachments/assets/6f80c6f7-491b-47e1-9595-fccaf02ef82b" />
+
 
 **Question 4**
----
--- Paste Question 4 here
+
+Create a table named Locations with the following columns:
+
+LocationID as INTEGER
+LocationName as TEXT
+Address as TEXT
 
 ```sql
--- Paste your SQL code below for Question 4
+create table Locations(
+LocationID INTEGER,
+LocationName TEXT,
+Address TEXT
+)
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1264" height="404" alt="Screenshot 2025-09-27 092151" src="https://github.com/user-attachments/assets/649741f6-ffb8-4cfd-b1c3-19382e9536d3" />
+
 
 **Question 5**
----
--- Paste Question 5 here
+
+Write a SQL query to modify the Student_details table by adding a new column Email of type VARCHAR(50) and updating the column MARKS to have a default value of 0.
 
 ```sql
--- Paste your SQL code below for Question 5
+
+alter table Student_details
+add column Email VARCHAR(50);
+alter table Student_details
+add column MARKS DEFAULT 0;
+
 ```
 
 **Output:**
+<img width="1255" height="286" alt="Screenshot 2025-09-27 092220" src="https://github.com/user-attachments/assets/65977e06-17df-42f4-8f6e-5123f11d3688" />
 
-![Output5](output.png)
+
 
 **Question 6**
----
--- Paste Question 6 here
+
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
 
 ```sql
--- Paste your SQL code below for Question 6
+
+create table Orders(
+OrderID INTEGER PRIMARY KEY,
+OrderDate DATE NOT NULL,
+CustomerID INTEGER,
+FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+)
+
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1259" height="334" alt="Screenshot 2025-09-27 092246" src="https://github.com/user-attachments/assets/e4362d56-9724-4b51-bd36-0b0535d0953e" />
+
 
 **Question 7**
----
--- Paste Question 7 here
+
+Create a table named Invoices with the following constraints:
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+Amount as REAL should be greater than 0.
+DueDate as DATE should be greater than the InvoiceDate.
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
 ```sql
--- Paste your SQL code below for Question 7
+
+create table Invoices(
+InvoiceID INTEGER PRIMARY KEY,
+InvoiceDate DATE,
+Amount REAL CHECK(Amount>0),
+DueDate DATE check(DueDate>InvoiceDate),
+OrderID INTEGER,
+FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+)
+
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1261" height="337" alt="Screenshot 2025-09-27 092311" src="https://github.com/user-attachments/assets/a3439b31-f9fd-4052-9368-9f6054b73f2d" />
+
 
 **Question 8**
----
--- Paste Question 8 here
+
+Insert a record with EmployeeID 001, Name Sarah Parker, Position Manager, Department HR, and Salary 60000 into the Employee table.
+
+For example:
 
 ```sql
--- Paste your SQL code below for Question 8
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)
+VALUES('1','Sarah Parker','Manager','HR','60000');
+
+
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1265" height="305" alt="Screenshot 2025-09-27 092332" src="https://github.com/user-attachments/assets/4613e9c3-40a4-4270-80d0-3875786e2538" />
+
 
 **Question 9**
----
--- Paste Question 9 here
+
+Write a SQL Query  to add attribute ISBN as varchar(30) and domain_dept as varchar(30) in the table 'books'
 
 ```sql
--- Paste your SQL code below for Question 9
+alter table books
+add column ISBN varchar(30);
+alter table books
+add column domain_dept varchar(30);
 ```
 
 **Output:**
+<img width="1258" height="422" alt="Screenshot 2025-09-27 092355" src="https://github.com/user-attachments/assets/f6a9f82a-38cd-4d59-88dd-630978809603" />
 
-![Output9](output.png)
+
 
 **Question 10**
----
--- Paste Question 10 here
+
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
 
 ```sql
--- Paste your SQL code below for Question 10
+  
+create table Attendance(AttendanceID INTEGER primary key,EmployeeID INTEGER,AttendanceDate DATE,
+Status TEXT CHECK(Status in('Present','Absent','Leave')),FOREIGN KEY (EmployeeID) references Employees(EmployeeID)  );
+
+
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1268" height="343" alt="Screenshot 2025-09-27 092458" src="https://github.com/user-attachments/assets/3e8a78b1-2bbf-4c16-afc0-19252ac39d55" />
+
 
 
 ## RESULT
